@@ -67,7 +67,7 @@ if ($conn) {
 
         <?php endforeach; ?>
 
-
+        <img src="../" alt="">
 </body>
 
 </html>

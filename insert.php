@@ -23,23 +23,21 @@ if (isset($_POST['insertBtn'])) {
         $errors = true;
     }
 
-    $conn = mysqli_connect('localhost', 'root', 'root', 'spotify_db');
+    $conn = mysqli_connect('localhost', 'root', '', 'spotify_db', '4306');
     if ($conn) {
         echo 'Connected successfully<br>';
 
-$name = $_POST['name'];
-$bio = $_POST['bio'];
-$gender = $_POST['gender'];
-$birth_year = $_POST['birth_year'];
+        $name = $_POST['name'];
+        $bio = $_POST['bio'];
+        $gender = $_POST['gender'];
+        $birth_year = $_POST['birth_year'];
 
-$query = "INSERT INTO artists (name, bio, gender, birth_year)
+        $query = "INSERT INTO artists (name, bio, gender, birth_year)
         VALUES('$name','$bio','$gender','$birth_year')";
-   
-   $result = mysqli_query($conn, $query);
-    if ($result)
-        echo 'Successfully inserted in the DB.';  
 
-
+        $result = mysqli_query($conn, $query);
+        if ($result)
+            echo 'Successfully inserted in the DB.';
     } else {
         echo 'Problem';
     }
@@ -56,10 +54,11 @@ $query = "INSERT INTO artists (name, bio, gender, birth_year)
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=
     , initial-scale=1.0">
-    <title>Document</title>
+    <title>Insert Page</title>
 </head>
 
 <body>
+    <?php include 'menu.html' ?>
     <form method="POST" action="">
         <input type="text" name="name" placeholder="Name"><br>
         <input type="text" name="bio" placeholder="bio"><br>
