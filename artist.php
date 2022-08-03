@@ -3,7 +3,7 @@
 
 
 
-$conn = mysqli_connect('localhost', 'root', 'root', 'spotify_db');
+$conn = mysqli_connect('localhost', 'root', '', 'spotify_db', '4306');
 if ($conn) {
     //echo 'Connected successfully<br>';
 
@@ -37,10 +37,12 @@ if ($conn) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Artist page</title>
 </head>
 
 <body>
+<?php include 'menu.html' ?>
+
     <?php foreach ($artists as $artist) : ?>
 
         <p>
@@ -63,7 +65,7 @@ if ($conn) {
 
         <hr>
 
-    <?php endforeach; ?>
+        <?php endforeach; ?>
 
 
 </body>
