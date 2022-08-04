@@ -1,51 +1,58 @@
 <?php
+session_start();
 
 if (isset($_POST['submitBtn'])) {
     $errors = false;
 
-    if (empty($_POST['username'])) {
-        echo 'User name is mandatory.<br>';
-        $errors = true;
-    }
-
     if (empty($_POST['email'])) {
-        echo 'email  is mandatory.<br>';
+        echo 'email is mandatory <br>';
         $errors = true;
     }
 
+    if (empty($_POST['password'])) {
+        echo 'password is mandatory <br>';
+        $errors =  true;
+    }
     if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         $errors = true;
     } else {
         echo 'email is incorect.<br>';
     }
 
-    if (empty($_POST['password'])) {
-        echo 'password  is mandatory.<br>';
-        $errors = true;
-    }
-
-
     $conn = mysqli_connect('localhost', 'root', 'root', 'spotify_db');
 
     if ($conn) {
-        echo 'Connected successfully<br>';
+        echo 'Connected successfuly <br>';
 
-        $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['password'];
 
 
-        $query = "INSERT INTO users (username, email, password)
-        VALUES('$username','$email','$password')";
+        $selectemail = mysqli_query($conn, "
+        SELECT email 
+        FROM users 
+        WHERE email = '" . $_POST['email'] . "'");
+        if (mysqli_num_rows($selectemail)) {
+            echo 'This email address is already exist! <br>';
+        } else {
+            echo 'You are not registrated';
+        };
 
-        $result = mysqli_query($conn, $query);
-        if ($result)
-            echo 'Successfully inserted in the DB.';
-    } else {
-        echo 'Problem';
+        $selectpass = mysqli_query($conn, "
+        SELECT password 
+        FROM users 
+        WHERE password = '" . $_POST['password'] . "'");
+
+        if (mysqli_num_rows($selectpass)) {
+        } else {
+            echo 'Incorrect password';
+        };
+    
+       
+        }
+         if ($_SESSION['email'] = $email);
+        
     }
-}
-
 
 
 ?>
@@ -64,7 +71,6 @@ if (isset($_POST['submitBtn'])) {
     <?php include 'menu.html' ?>
 
     <form method="POST" action="">
-        <input type="text" name="username" placeholder="User Name"><br>
         <input type="email" name="email" placeholder="Your Email"><br>
         <input type="password" name="password" placeholder="Enter a password"><br>
         <input type="submit" name="submitBtn" value="Submit">
