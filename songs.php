@@ -16,6 +16,8 @@ if ($conn) {
     echo 'Problem Connecting';
 }
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +32,44 @@ if ($conn) {
 <body>
     <?php include 'menu.html' ?>
 
+    <form method="POST">
+        <input type="text" name="SongName" placeholder="Enter Song Name" value="">
+        <input type="submit" name="Search">
+    </form>
+
+    <?php
+    if (isset($_POST['Search'])) {
+        $query = 'SELECT title, poster, artists.name 
+        FROM songs
+        INNER JOIN artists ON songs.artist_id = artists.id
+        ';
+
+        foreach ($songs as $element) {
+            if ($_POST['SongName'] == $element['title']) {
+                echo '<strong>Title : </strong>' . $element['title'] . '<br>' . '<strong>Name Of Artist : </strong>' . $element['name'] . '<br>';
+                exit();
+            }  
+            if ($_POST['SongName'] != $element['title']){
+                echo "Song not found";
+                exit();
+            }
+            } 
+        }
+    ?>
+
+    <form method="POST">
+        <input type="submit" name="Sort" value="Sort">
+    </form>
+
+    <?php
+    if(isset($_POST['Sort'])){
+        $query = 'SELECT title, poster, artists.name 
+        FROM songs
+        INNER JOIN artists ON songs.artist_id = artists.id
+        ORDER BY title DESC
+        ';
+    }
+    ?>
     <?php foreach ($songs as $song) : ?>
         <p>
             <strong>Title : </strong>
@@ -43,6 +83,7 @@ if ($conn) {
         <hr>
 
     <?php endforeach; ?>
+
 </body>
 
 </html>
