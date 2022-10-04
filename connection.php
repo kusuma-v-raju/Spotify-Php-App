@@ -19,7 +19,7 @@ if (isset($_POST['submitBtn'])) {
         echo 'email is incorect.<br>';
     }
 
-    $conn = mysqli_connect('localhost', 'root', 'root', 'spotify_db');
+    $conn = mysqli_connect('localhost', 'root', '', 'spotify_db', '4306');
 
     if ($conn) {
         echo 'Connected successfuly <br>';
@@ -47,8 +47,7 @@ if (isset($_POST['submitBtn'])) {
         } else {
             echo 'Incorrect password';
         };
-    
-       
+      
         }
          if ($_SESSION['email'] = $email);
         

@@ -5,13 +5,13 @@ if (isset($_SESSION['email']) !== true) {
     echo 'Please log in first to see this page! <br>';
     header('Location: connection.php');
     exit();
-} else {
+} else {    
     echo 'Hello, you loggued-in successfuly with email address : ' . $_SESSION['email'] . '<br>';
 }
 
 
 
-$conn = mysqli_connect('localhost', 'root', 'root', 'spotify_db');
+$conn = mysqli_connect('localhost', 'root', '', 'spotify_db', '4306');
 
 if ($conn) {
     echo 'Connected successfully <br>';

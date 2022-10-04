@@ -66,8 +66,11 @@ if ($conn) {
         $query = 'SELECT title, poster, artists.name 
         FROM songs
         INNER JOIN artists ON songs.artist_id = artists.id
-        ORDER BY title DESC
+        ORDER BY songs.title ASC
         ';
+        
+         
+      
     }
     ?>
     <?php foreach ($songs as $song) : ?>

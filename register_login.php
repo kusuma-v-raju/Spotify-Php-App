@@ -23,9 +23,7 @@ if (isset($_POST['submitBtn'])) {
         echo 'password  is mandatory.<br>';
         $errors = true;
     }
-
-
-    $conn = mysqli_connect('localhost', 'root', 'root', 'spotify_db');
+    $conn = mysqli_connect('localhost', 'root', '', 'spotify_db', '4306');
 
     if ($conn) {
         echo 'Connected successfully<br>';

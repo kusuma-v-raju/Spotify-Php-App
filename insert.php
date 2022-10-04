@@ -22,7 +22,6 @@ if (isset($_POST['insertBtn'])) {
         echo 'birth_year is mandatory.<br>';
         $errors = true;
     }
-
     $conn = mysqli_connect('localhost', 'root', '', 'spotify_db', '4306');
     if ($conn) {
         echo 'Connected successfully<br>';
